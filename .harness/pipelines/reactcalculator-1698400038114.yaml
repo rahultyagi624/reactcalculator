@@ -18,23 +18,21 @@ pipeline:
           execution:
             steps:
               - step:
-                  identifier: npminstall
-                  name: npm_install
-                  spec:
-                    command: npm install
-                  timeout: ""
                   type: Run
-              - step:
-                  identifier: npmtest
-                  name: npm_test
+                  identifier: build_javascript_app
+                  name: Build JavaScript App
                   spec:
-                    command: npm run test
-                  timeout: ""
-                  type: Run
+                    shell: Sh
+                    command: |-
+                      echo "Welcome to Harness CI"
+                      node --version
+                      npm install
+                      npm run build --if-present
+                      npm test
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
+            spec: {}
         type: CI
