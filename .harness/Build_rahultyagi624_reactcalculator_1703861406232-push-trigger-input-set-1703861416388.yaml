@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_rahultyagi624_reactcalculator_1703861406232-push-trigger-input-set
+  identifier: Build_rahultyagi624_reactcalculator_1703861406232pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: js_demo
+  pipeline:
+    identifier: Build_rahultyagi624_reactcalculator_1703861406232
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
