@@ -30,7 +30,7 @@ pipeline:
                       name: npm_test
                       spec:
                         shell: Sh
-                        command: npm run build
+                        command: npm run test
                       timeout: ""
                       type: Run
           platform:
