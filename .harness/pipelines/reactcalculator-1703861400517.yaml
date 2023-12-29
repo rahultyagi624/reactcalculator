@@ -17,20 +17,44 @@ pipeline:
           cloneCodebase: true
           execution:
             steps:
-              - step:
-                  identifier: npminstall
-                  name: npm_install
-                  spec:
-                    command: npm install
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: npmtest
-                  name: npm_test
-                  spec:
-                    command: npm run test
-                  timeout: ""
-                  type: Run
+              - parallel:
+                  - step:
+                      identifier: npminstall
+                      name: npm_install
+                      spec:
+                        command: npm install
+                      timeout: ""
+                      type: Run
+                  - step:
+                      identifier: npmtest
+                      name: npm_test
+                      spec:
+                        shell: Sh
+                        command: npm run build
+                      timeout: ""
+                      type: Run
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+        type: CI
+    - stage:
+        name: build and push to docker
+        identifier: build_and_push_to_docker
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
               - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
@@ -39,11 +63,4 @@ pipeline:
                     connectorRef: account.harnessImage
                     repo: js-demo
                     tags:
-                      - "1.0"
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
-        type: CI
+                      - "19"
