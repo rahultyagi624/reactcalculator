@@ -31,10 +31,19 @@ pipeline:
                     command: npm run test
                   timeout: ""
                   type: Run
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: account.harnessImage
+                    repo: js-demo
+                    tags:
+                      - "1.0"
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
+            spec: {}
         type: CI
