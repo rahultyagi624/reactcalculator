@@ -30,7 +30,7 @@ pipeline:
                       name: npm_test
                       spec:
                         shell: Sh
-                        command: npm run
+                        command: npm run build
                       timeout: ""
                       type: Run
           platform:
@@ -60,7 +60,7 @@ pipeline:
                   name: BuildAndPushDockerRegistry_1
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
-                    connectorRef: account.harnessImage
+                    connectorRef: js_demo
                     repo: js-demo
                     tags:
                       - "19"
