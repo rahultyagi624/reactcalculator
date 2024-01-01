@@ -17,22 +17,13 @@ pipeline:
           cloneCodebase: true
           execution:
             steps:
-              - parallel:
-                  - step:
-                      identifier: npminstall
-                      name: npm_install
-                      spec:
-                        command: npm install
-                      timeout: ""
-                      type: Run
-                  - step:
-                      identifier: npmtest
-                      name: npm_test
-                      spec:
-                        shell: Sh
-                        command: npm run build
-                      timeout: ""
-                      type: Run
+              - step:
+                  identifier: npminstall
+                  name: npm_install
+                  spec:
+                    command: npm install
+                  timeout: ""
+                  type: Run
           platform:
             os: Linux
             arch: Amd64
